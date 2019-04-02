@@ -35,7 +35,7 @@ func newDevice(n int, chk bool) (*device, error) {
 	for i := 0; i < int(req.devNum); i++ {
 		d, err := newSocket(fd, i, chk)
 		if err == nil {
-			log.Printf("dev: %s opened", d.name)
+			//log.Printf("dev: %s opened", d.name)
 			return d, err
 		}
 	}
@@ -51,20 +51,20 @@ func newSocket(fd, n int, chk bool) (*device, error) {
 	// Check the feature list returned feature list.
 	if chk && i.features[4]&0x40 == 0 {
 		err := errors.New("does not support LE")
-		log.Printf("dev: %s %s", name, err)
+		//log.Printf("dev: %s %s", name, err)
 		return nil, err
 	}
-	log.Printf("dev: %s up", name)
+	//log.Printf("dev: %s up", name)
 	if err := gioctl.Ioctl(uintptr(fd), hciUpDevice, uintptr(n)); err != nil {
 		if err != syscall.EALREADY {
 			return nil, err
 		}
-		log.Printf("dev: %s reset", name)
+		//log.Printf("dev: %s reset", name)
 		if err := gioctl.Ioctl(uintptr(fd), hciResetDevice, uintptr(n)); err != nil {
 			return nil, err
 		}
 	}
-	log.Printf("dev: %s down", name)
+	//log.Printf("dev: %s down", name)
 	if err := gioctl.Ioctl(uintptr(fd), hciDownDevice, uintptr(n)); err != nil {
 		return nil, err
 	}
