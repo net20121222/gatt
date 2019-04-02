@@ -7,8 +7,8 @@ import (
 	"io"
 	"log"
 
-	"github.com/paypal/gatt/linux/evt"
-	"github.com/paypal/gatt/linux/util"
+	"huashan/gatt/linux/evt"
+	"huashan/gatt/linux/util"
 )
 
 type CmdParam interface {

@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 	"errors"
 
-	"github.com/paypal/gatt/linux/util"
+	"huashan/gatt/linux/util"
 )
 
 type EventHandler interface {
